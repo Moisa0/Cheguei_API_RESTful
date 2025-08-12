@@ -31,6 +31,7 @@
 
 - [ ] USERS e ADMINS não devem poder ser cadastrados com um e-mail duplicado;
 - [ ] USERS e ADMINS não devem poder ser cadastrados com um username duplicado;
+- [ ] USERS só devem ser criados atribuídos a ADMINs;
 - [ ] Um USER não pode excluir outro USER;
 - [ ] Um ADMIN não pode excluir outro ADMIN;
 - [ ] USER, ADMIN e MASTER deve se registrar utilizando username;
