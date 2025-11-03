@@ -4,7 +4,7 @@ services:
   cheguei-pg:
     image: bitnami/postgresql
     ports:
-      - 5433:5433
+      - 5433:5432
     environment:
       - POSTGRESQL_USERNAME=cheguei
       - POSTGRESQL_PASSWORD=codafofo

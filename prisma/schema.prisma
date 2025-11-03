@@ -1,15 +1,181 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model Estagiario {
+  id                  String          @id @default(uuid())
+  email               String          @unique
+  name                String
+  userName            String          @unique
+  password            String
+  cpf                 String          @unique
+  nivelEstag          NivelType //só pode ser SUPERIOR ou MEDIO
+  typeEstag           TypeEstag //só pode ser DIREITO, TI, ADM ou MEDIO
+  unidade             String
+  UploadJustificativa Justificativa[]
+  FolhaDePonto        FolhaDePonto[]
+
+  gestor   Gestor @relation(fields: [gestorId], references: [id])
+  gestorId String
+
+  esdep   Esdep  @relation(fields: [esdepId], references: [id])
+  esdepId String
+
+  coordenador   Coordenador @relation(fields: [coordenadorId], references: [id])
+  coordenadorId String
+
+  master   Master @relation(fields: [masterId], references: [id])
+  masterId String
+
+  @@map("estagiarios")
+}
+
+
+model Gestor {
+  id         String    @id @default(uuid())
+  email      String    @unique
+  name       String
+  userName   String    @unique
+  password   String
+  cpf        String    @unique
+  typeGestor TypeEstag //só pode ser DIREITO, TI, ADM ou MEDIO
+  unidade    String
+  upload     String?
+
+  Estagiario Estagiario[]
+
+  coordenador   Coordenador @relation(fields: [coordenadorId], references: [id])
+  coordenadorId String
+
+  master   Master @relation(fields: [masterId], references: [id])
+  masterId String
+
+  esdep         Esdep           @relation(fields: [esdepId], references: [id])
+  esdepId       String
+  Justificativa Justificativa[]
+
+  @@map("gestores")
+}
+
+
+model Coordenador {
+  id        String    @id @default(uuid())
+  email     String    @unique
+  name      String
+  userName  String    @unique
+  password  String
+  cpf       String    @unique
+  typeCoord NivelType //só pode ser SUPERIOR ou MEDIO
+
+  esdep   Esdep  @relation(fields: [esdepId], references: [id])
+  esdepId String
+
+  master Master @relation(fields: [masterId], references: [id])
+
+  Gestor       Gestor[]
+  Estagiario   Estagiario[]
+  estagiarioId String
+  masterId     String
+
+  @@map("coordenadores")
+}
+
+
+model Esdep {
+  id          String        @id @default(uuid())
+  email       String        @unique
+  name        String
+  userName    String        @unique
+  password    String
+  cpf         String        @unique
+  Coordenador Coordenador[]
+  Estagiario  Estagiario[]
+  Gestor      Gestor[]
+
+  master   Master @relation(fields: [masterId], references: [id])
+  masterId String
+
+  @@map("esdeps")
+}
+
+
+model Master {
+  id          String        @id @default(uuid())
+  email       String        @unique
+  name        String
+  userName    String        @unique
+  password    String
+  cpf         String        @unique
+  Estagiario  Estagiario[]
+  Gestor      Gestor[]
+  Coordenador Coordenador[]
+  Esdep       Esdep[]
+
+  @@map("masters")
+}
+
+
+model FolhaDePonto {
+  id               String    @id @default(uuid())
+  mes              Int // Mês do ponto (1-12)
+  ano              Int // Ano do ponto
+  horasTrabalhadas Int // Total de horas trabalhadas no mês
+  observacao       String?
+  entrada          DateTime?
+  saida            DateTime?
+
+  estagiarioId String
+
+  estagiario Estagiario @relation(fields: [estagiarioId], references: [id])
+
+  arquivoEstagiario String?
+  arquivoGestor     String?
+  arquivoFinal      String?
+
+
+  @@map("folhaDePontos")
+}
+
+
+model Justificativa {
+  id           String     @id @default(uuid())
+  fileUrl      String // URL ou caminho do arquivo
+  descricao    String
+  tipo         String? // "Atestado", "Justificativa", etc.
+  dataEnvio    DateTime   @default(now())
+  estagiarioId String
+  status       StatusType @default(PENDENTE) // PENDENTE, ACEITO, INDEFERIDO
+
+  estagiario Estagiario @relation(fields: [estagiarioId], references: [id])
+
+  gestor   Gestor @relation(fields: [gestorId], references: [id])
+  gestorId String
+
+  @@map("justificativas")
+}
+
+
+
+
+enum NivelType {
+  SUPERIOR
+  MEDIO
+}
+
+enum TypeEstag {
+  DIREITO
+  TI
+  ADM
+  MEDIO
+}
+
+enum StatusType {
+  PENDENTE
+  ACEITO
+  INDEFERIDO
 }

@@ -5,38 +5,50 @@
 
 ### MASTER
 - [ ] Deve ser possível se autenticar;
-- [ ] Deve ser possível (autenticado) cadastrar, atualizar e excluir ESDEP, Superiores, Coordenadores e Estagiários;
+- [ ] Deve ser possível recuperar a própria senha;
+- [ ] Deve ser possível (autenticado) alterar a própria senha;
+- [ ] Deve ser possível (autenticado) cadastrar, atualizar e excluir ESDEP, Coordenadores, Gestores e Estagiários;
 - [ ] Deve ser possível (autenticado) listar os pontos batidos por qualquer estagiário;
 - [ ] Deve ser possível (autenticado) gerar PDF da folha de ponto de qualquer estagiário, por mês;
 - [ ] Deve ser possível (autenticado) visualizar o upload da folha de ponto assinada no respectivo mês;
 
 ### ESDEP
 - [ ] Deve ser possível se autenticar;
-- [ ] Deve ser possível (autenticado) cadastrar, atualizar e excluir Superiores, Coordenadores e Estagiários;
+- [ ] Deve ser possível recuperar a própria senha;
+- [ ] Deve ser possível (autenticado) alterar a própria senha;
+- [ ] Deve ser possível (autenticado) cadastrar, atualizar e excluir Coordenadores, Gestores e Estagiários;
 - [ ] Deve ser possível (autenticado) listar os pontos batidos por qualquer estagiário;
 - [ ] Deve ser possível (autenticado) gerar PDF da folha de ponto de qualquer estagiário, por mês;
 - [ ] Deve ser possível (autenticado) visualizar o upload da folha de ponto assinada no respectivo mês;
 
-### SUPERIOR
+### COORDENADOR
 - [ ] Deve ser possível se autenticar;
-- [ ] Deve ser possível (autenticado) cadastrar, atualizar e excluir Coordenadores (Direito, TI e ADM);
+- [ ] Deve ser possível recuperar a própria senha;
+- [ ] Deve ser possível (autenticado) alterar a própria senha;
+- [ ] Deve ser possível (autenticado) cadastrar, atualizar e excluir Gestores (Direito, TI e ADM);
 - [ ] Deve ser possível (autenticado) listar os pontos batidos por estagiários de nível superior;
 - [ ] Deve ser possível (autenticado) gerar PDF da folha de ponto de estagiários de nível superior, por mês;
 - [ ] Deve ser possível (autenticado) visualizar o upload da folha de ponto assinada no respectivo mês;
+- [ ] Deve ser possível (autenticado) visualizar o upload da folha de ponto assinada no respectivo mês;
 
-### COORDENADOR
+### GESTOR
 - [ ] Deve ser possível se autenticar;
+- [ ] Deve ser possível recuperar a própria senha;
+- [ ] Deve ser possível (autenticado) alterar a própria senha;
 - [ ] Deve ser possível (autenticado) cadastrar, atualizar e excluir estagiários sob sua responsabilidade;
 - [ ] Deve ser possível (autenticado) listar as folhas de ponto de seus estagiários, por mês;
 - [ ] Deve ser possível (autenticado) aprovar ou rejeitar ajustes de pontos solicitados pelos estagiários;
 - [ ] Deve ser possível (autenticado) gerar PDF da folha de ponto dos seus estagiários, por mês;
-- [ ] Deve ser possível (autenticado) fazer upload do PDF da folha de ponto assinada do estagiário;
+- [ ] Deve ser possível (autenticado) fazer upload do PDF da folha de ponto assinada pelo gestor e pelo estagiário ao Coordenador;
 
 ### ESTAGIÁRIO
 - [ ] Deve ser possível se autenticar;
+- [ ] Deve ser possível recuperar a própria senha;
+- [ ] Deve ser possível (autenticado) alterar a própria senha;
 - [ ] Deve ser possível (autenticado) bater o ponto de entrada e saída;
-- [ ] Deve ser possível (autenticado) solicitar ajustes de ponto para o dia anterior;
+- [ ] Deve ser possível (autenticado) solicitar ajustes de ponto para o dia anterior com possibilidade de anexo;
 - [ ] Deve ser possível (autenticado) gerar PDF da própria folha de ponto, por mês;
+- [ ] Deve ser possível (autenticado) fazer o upload da folha de ponto assinada ao Gestor;
 
 ## RNs (Regras de Negócio – Condições que devem ser respeitadas)
 - [ ] Nenhum usuário poderá ser cadastrado com e-mail duplicado;
